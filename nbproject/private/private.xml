@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/opt/PayaraDev/test-cases/jaspic-sam-example/web/index.html</file>
+            <file>file:/opt/PayaraDev/test-cases/jaspic-sam-example/src/java/fish/payara/examples/jaspic/boilerplate/SimpleSAMConfig.java</file>
+            <file>file:/opt/PayaraDev/test-cases/jaspic-sam-example/src/java/fish/payara/examples/jaspic/boilerplate/SimpleSAMAuthConfigProvider.java</file>
+            <file>file:/opt/PayaraDev/test-cases/jaspic-sam-example/src/java/fish/payara/examples/jaspic/SecureServlet.java</file>
+            <file>file:/opt/PayaraDev/test-cases/jaspic-sam-example/src/java/fish/payara/examples/jaspic/SimpleSAM.java</file>
+            <file>file:/opt/PayaraDev/test-cases/jaspic-sam-example/src/java/fish/payara/examples/jaspic/SimpleSAMWebListener.java</file>
+            <file>file:/opt/PayaraDev/test-cases/jaspic-sam-example/src/java/fish/payara/examples/jaspic/boilerplate/SimpleSAMAuthContext.java</file>
+        </group>
+    </open-files>
+</project-private>
