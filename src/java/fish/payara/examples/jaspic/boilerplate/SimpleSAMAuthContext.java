@@ -7,8 +7,6 @@ package fish.payara.examples.jaspic.boilerplate;
 
 import fish.payara.examples.jaspic.SimpleSAM;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.message.AuthException;
@@ -24,13 +22,8 @@ class SimpleSAMAuthContext implements ServerAuthContext {
 
     SimpleSAM sam;
 
-    SimpleSAMAuthContext(String authContextID, Subject serviceSubject, Map properties,CallbackHandler handler) {
-        try {
-            sam = new SimpleSAM();
-            sam.initialize(null, null, handler, properties);
-        } catch (AuthException ex) {
-            Logger.getLogger(SimpleSAMAuthContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    SimpleSAMAuthContext(String authContextID, Subject serviceSubject, Map properties,CallbackHandler handler, SimpleSAM sam) {
+        this.sam = sam;
     }
 
     @Override

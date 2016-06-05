@@ -5,6 +5,7 @@
  */
 package fish.payara.examples.jaspic.boilerplate;
 
+import fish.payara.examples.jaspic.SimpleSAM;
 import java.util.Map;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
@@ -23,6 +24,7 @@ class SimpleSAMConfig implements ServerAuthConfig {
     private final String appContext;
     private final CallbackHandler handler;
     private final Map constructedProperties;
+    private SimpleSAM sam;
 
 
     SimpleSAMConfig(String layer, String appContext, CallbackHandler handler, Map properties) {
@@ -37,7 +39,12 @@ class SimpleSAMConfig implements ServerAuthConfig {
         // combine constructed properties with passed in properties
         if (constructedProperties != null)
             properties.putAll(constructedProperties);
-        return new SimpleSAMAuthContext(authContextID, serviceSubject, properties, handler);
+        
+        if (sam == null) {
+            sam = new SimpleSAM();
+            sam.initialize(null, null, handler, properties);
+        }
+        return new SimpleSAMAuthContext(authContextID, serviceSubject, properties, handler, sam);
     }
 
     @Override

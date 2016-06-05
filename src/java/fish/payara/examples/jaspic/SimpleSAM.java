@@ -5,16 +5,10 @@
  */
 package fish.payara.examples.jaspic;
 
-import com.sun.xml.wss.impl.callback.UsernameCallback;
-import java.io.IOException;
-import java.security.Principal;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.message.AuthException;
 import javax.security.auth.message.AuthStatus;
 import static javax.security.auth.message.AuthStatus.SEND_SUCCESS;
@@ -60,7 +54,8 @@ public class SimpleSAM implements ServerAuthModule {
             callbackArray = new Callback[] {userCallback, groupsCallback};
         }
         else {
-            callbackArray =new Callback[] { new CallerPrincipalCallback(clientSubject, (Principal)null) };   
+            callbackArray =new Callback[] { new CallerPrincipalCallback(clientSubject, "anonymous"),
+                                            new GroupPrincipalCallback(clientSubject, new String[] {"anonymous"})};   
         }
         
        try {

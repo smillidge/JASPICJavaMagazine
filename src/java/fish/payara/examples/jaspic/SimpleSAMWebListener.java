@@ -6,8 +6,10 @@
 package fish.payara.examples.jaspic;
 
 import fish.payara.examples.jaspic.boilerplate.SimpleSAMAuthConfigProvider;
-import javax.annotation.security.DeclareRoles;
+import java.util.Enumeration;
+import java.util.HashMap;
 import javax.security.auth.message.config.AuthConfigFactory;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -23,11 +25,21 @@ public class SimpleSAMWebListener implements ServletContextListener {
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        
+       // Passing the Servlet Initializer properties is not necessary but can 
+       // enable a SAM to use them to initialise itself
+       ServletContext sc = sce.getServletContext();
+       Enumeration<String> names = sce.getServletContext().getInitParameterNames();
+       HashMap<String,String> samProperties = new HashMap<>();
+       while(names.hasMoreElements()) {
+           String name = names.nextElement();
+           samProperties.put(name, sc.getInitParameter(name));
+       }
        registrationid = AuthConfigFactory.getFactory()
-                .registerConfigProvider(new SimpleSAMAuthConfigProvider(null,null), 
+                .registerConfigProvider(new SimpleSAMAuthConfigProvider(samProperties,null), 
                        "HttpServlet" , 
-                       sce.getServletContext().getVirtualServerName() + " " + sce.getServletContext().getContextPath(),
-                     "Simple SAM");
+                        sce.getServletContext().getVirtualServerName() + " " + sce.getServletContext().getContextPath(),
+                        "Simple SAM");
         System.out.println("Context intialised");
     }
 
