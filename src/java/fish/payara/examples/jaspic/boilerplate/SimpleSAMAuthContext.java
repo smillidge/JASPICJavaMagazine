@@ -22,8 +22,9 @@ class SimpleSAMAuthContext implements ServerAuthContext {
 
     SimpleSAM sam;
 
-    SimpleSAMAuthContext(String authContextID, Subject serviceSubject, Map properties,CallbackHandler handler, SimpleSAM sam) {
+    SimpleSAMAuthContext(String authContextID, Subject serviceSubject, Map properties,CallbackHandler handler, SimpleSAM sam) throws AuthException {
         this.sam = sam;
+        sam.initialize(null, null, handler, properties);
     }
 
     @Override

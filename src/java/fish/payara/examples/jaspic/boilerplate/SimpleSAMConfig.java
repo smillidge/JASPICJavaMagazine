@@ -42,7 +42,6 @@ class SimpleSAMConfig implements ServerAuthConfig {
         
         if (sam == null) {
             sam = new SimpleSAM();
-            sam.initialize(null, null, handler, properties);
         }
         return new SimpleSAMAuthContext(authContextID, serviceSubject, properties, handler, sam);
     }
